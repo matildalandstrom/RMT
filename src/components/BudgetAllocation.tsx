@@ -1,13 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
-import { SavedBudgets } from "./SavedBudgets";
-import { Budget } from "../types/types";
-import { BudgetRow } from "./BudgetRow";
+import React from "react";
+import { AddEditBudget } from "./AddEditBudget";
 
-export const BudgetAllocation: FC = () => {
+export const BudgetAllocation = () => {
   return (
     <div className="px-20 py-40">
       <h1 className="text-4xl pb-20 font-bold">Budget Allocation Program</h1>
-      <BudgetRow />
+      <AddEditBudget />
     </div>
   );
 };

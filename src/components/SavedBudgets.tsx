@@ -54,11 +54,15 @@ export const SavedBudgets = ({
     <div className="col-span-2 p-3 border-black border-2">
       <h2 className="text-2xl pb-5 font-bold">Saved budgets</h2>
       <div className="overflow-y-scroll max-h-[400px]">
-        <div className="grid grid-cols-4 text-left pb-2 font-bold">
-          <p>Market</p>
-          <p>Development</p>
-          <p>Sales</p>
-        </div>
+        {listItems.length === 0 ? (
+          "No saved budgets. Add a new one!"
+        ) : (
+          <div className="grid grid-cols-4 text-left pb-2 font-bold">
+            <p>Market</p>
+            <p>Development</p>
+            <p>Sales</p>
+          </div>
+        )}
         <ul className="col-span-2">{listItems}</ul>
       </div>
     </div>
