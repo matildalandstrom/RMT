@@ -1,5 +1,6 @@
 import React from "react";
-import { Budget } from "./types";
+import { Budget } from "../types/types";
+
 type Props = {
   budgets: Array<Budget>;
   handleRemoveBudget: (index: number) => void;
@@ -23,52 +24,41 @@ export const SavedBudgets = ({
         className={`grid text-left rounded grid-cols-4 ${
           editIndex === index ? "border-blue-500 border-2" : ""
         }`}
-        key={index}
         value={item.market}
       >
-        <div className="">
-          {item.market}
+        <div>{item.market + " kr"}</div>
+        <div> {item.development + " kr"}</div>
+        <div> {item.sell + " kr"}</div>
 
-          <label> kr</label>
-        </div>
-        <div>
-          {item.development}
-
-          <label>kr</label>
-        </div>
-        <div>
-          {item.sell}
-          <label> kr</label>
-        </div>
-        <div>
+        <div className="text-white">
           <button
-            className="bg-blue-500 rounded ml-5 p-1 disabled:opacity-50 text-white"
+            className="bg-blue-500 rounded ml-5 p-2 disabled:opacity-50 "
             onClick={() => handleEdit(index)}
             disabled={editIndex === index}
           >
-            Editera
+            Edit
           </button>
           <button
-            className="bg-red-500 rounded disabled:opacity-50  ml-5 p-1 text-white"
+            className="bg-red-500 rounded disabled:opacity-50 ml-5 p-2"
             onClick={() => handleRemoveBudget(index)}
             disabled={editIndex === index}
           >
-            Radera
+            Delete
           </button>
         </div>
       </li>
     </div>
   ));
+
   return (
     <div className="col-span-2 p-3 border-black border-2">
-      <h2 className="text-2xl pb-5 font-bold">Sparade budgetar</h2>
+      <h2 className="text-2xl pb-5 font-bold">Saved budgets</h2>
       <div className="overflow-y-scroll max-h-[400px]">
         <div className="grid grid-cols-4 text-left pb-2 font-bold">
-          <p>Marknad</p>
-          <p>Utveckling</p>
-          <p>Sälj</p>
+          <p>Market</p>
+          <p>Development</p>
+          <p>Sales</p>
         </div>
-
         <ul className="col-span-2">{listItems}</ul>
       </div>
     </div>

@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { SavedBudgets } from "./SavedBudgets";
-import { Budget } from "./types";
+import { Budget } from "../types/types";
 
-export const BudgetRow: FC = () => {
+export const NewBudget: FC = () => {
   const [market, setMarket] = useState(0);
   const [development, setDevelopment] = useState(0);
   const [sell, setSell] = useState(0);
@@ -53,7 +53,6 @@ export const BudgetRow: FC = () => {
   };
 
   const clearBudget = () => {
-    console.log("Hej");
     setEditIndex(-1);
     setDevelopment(0);
     setMarket(0);
@@ -61,8 +60,9 @@ export const BudgetRow: FC = () => {
   };
 
   return (
-    <div className="px-20 py-40">
-      <h1 className="text-4xl pb-20 font-bold">Budgetallokering</h1>
+    <>
+      {" "}
+      <h1 className="text-4xl pb-20 font-bold">Budget Allocation Program</h1>
       <div className="grid grid-cols-3">
         <div className="col-span-1 p-3 text-left border-black border-y-2 border-l-2 h-auto max-h-60">
           <h2 className="text-2xl pb-5 text-center font-bold">
@@ -84,7 +84,7 @@ export const BudgetRow: FC = () => {
               max={max}
               step={1000}
             />
-            <label>Marknad: {market}</label>
+            <label>Market: {market} kr</label>
           </div>
           <div className="grid grid-cols-2 ">
             <input
@@ -102,7 +102,7 @@ export const BudgetRow: FC = () => {
               max={max}
               step={1000}
             />
-            <label>Utveckling: {development}</label>
+            <label>Development: {development} kr</label>
           </div>
 
           <div className="grid grid-cols-2">
@@ -117,10 +117,10 @@ export const BudgetRow: FC = () => {
               max={max}
               step={1000}
             />
-            <label>Sälj: {sell}</label>
+            <label>Sales: {sell} kr</label>
           </div>
           <div className="flex pt-5 justify-center place-items-center">
-            <p>Total allokerad summa: {totalAllocated}</p>
+            <p>Total allocated amount: {totalAllocated} kr</p>
             <button
               className="bg-blue-500 disabled:opacity-50 rounded ml-5 p-2 text-white"
               disabled={totalAllocated < max}
@@ -147,6 +147,6 @@ export const BudgetRow: FC = () => {
           editIndex={editIndex}
         />
       </div>
-    </div>
+    </>
   );
 };
