@@ -5,12 +5,12 @@ import { Budget } from "../types/types";
 export const AddEditBudget: FC = () => {
   const [market, setMarket] = useState(0);
   const [development, setDevelopment] = useState(0);
-  const [sell, setSell] = useState(0);
+  const [sales, setSales] = useState(0);
 
   const [savedBudgets, setSavedBudgets] = useState(Array<Budget>);
   const [editBudgetIndex, setEditBudgetIndex] = useState(-1);
 
-  const totalAllocated = market + development + sell;
+  const totalAllocated = market + development + sales;
   const max = 1200000;
   const step = 1000;
 
@@ -37,10 +37,10 @@ export const AddEditBudget: FC = () => {
     let budgets: Budget[];
 
     if (editBudgetIndex === -1)
-      budgets = [...savedBudgets, { market, development, sell }];
+      budgets = [...savedBudgets, { market, development, sell: sales }];
     else {
       budgets = [...savedBudgets];
-      budgets[editBudgetIndex] = { market, development, sell };
+      budgets[editBudgetIndex] = { market, development, sell: sales };
       setEditBudgetIndex(-1);
     }
     setSavedBudgets(budgets);
@@ -58,14 +58,14 @@ export const AddEditBudget: FC = () => {
     setEditBudgetIndex(budgetIndex);
     setDevelopment(savedBudgets[budgetIndex].development);
     setMarket(savedBudgets[budgetIndex].market);
-    setSell(savedBudgets[budgetIndex].sell);
+    setSales(savedBudgets[budgetIndex].sell);
   };
 
   const handleClearBudget = () => {
     setEditBudgetIndex(-1);
     setDevelopment(0);
     setMarket(0);
-    setSell(0);
+    setSales(0);
   };
 
   return (
@@ -119,18 +119,18 @@ export const AddEditBudget: FC = () => {
               className="mr-10"
               type="range"
               min={0}
-              value={sell}
+              value={sales}
               onChange={(event) =>
                 checkAllocatedOnChangeAmount(
                   parseInt(event.target.value),
-                  sell,
-                  setSell
+                  sales,
+                  setSales
                 )
               }
               max={max}
               step={step}
             />
-            <label>Sales: {sell} kr</label>
+            <label>Sales: {sales} kr</label>
           </div>
 
           <div className="flex pt-5 justify-center place-items-center">
